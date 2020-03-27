@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';  
 class App extends React.Component{
@@ -34,7 +34,7 @@ class App extends React.Component{
   };   
   
   submit =(event) => {
-    event.preventDefault(); // disable browser from refreshing
+    event.preventDefault(); // disable browser from refreshing , do nothing until told
 
     const payload = {
       title: this.state.title,
@@ -83,7 +83,7 @@ displayBlogPost = (posts) => {
       console.log('State', this.state);
     //return JSX
     return (
-      <div className='app'>
+      <div className="app-container">
         <h1>Welcome To Pet Pose</h1>
         <form onSubmit ={this.submit}>
           <div className="form-input">
@@ -96,7 +96,9 @@ displayBlogPost = (posts) => {
             />
           </div>
       
-
+          <div>
+            {/* {this.state.posts.map( e => '<p> ${e.namw} </p>')} */}
+          </div>
           
           <div className="form-input">
             <textarea 
