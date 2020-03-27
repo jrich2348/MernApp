@@ -13,7 +13,7 @@ const routes = require('./routes/api')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_petpose',{
     useNewUrlParser: true,
-    useUnifiedTopology: false, 
+    useUnifiedTopology: true, 
 });
 
 app.use(express.json());
