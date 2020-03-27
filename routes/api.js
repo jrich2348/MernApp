@@ -4,18 +4,21 @@ const BlogPost = require('../model/blogPost');
 // Routes Defined
 router.get('/', (req,res) => {
 
-    BlogPost.find({  })
+    BlogPost.find({})
         .then((data) => {
             console.log('Data: ', data);
+
             res.json(data);// sends back json backend
         })
         
         .catch((error) => {
-            console.log('error: ', error);
+            console.log('Blog Post Get error: ', error);
+            res.json(error);
         });
 });
 
-router.post('/api/save', (req, res)=> {
+router.post('/save', (req, res)=> {
+
     const data = req.body;
     const newBlogPost = new BlogPost(data);
 
@@ -23,13 +26,12 @@ router.post('/api/save', (req, res)=> {
 
         newBlogPost.save((error)=> {
             if (error) {
-                res.status(500).json({msg: 'Sorry, Internal server errors'});
+                res.status(500).json({msg: 'Sorry, Internal server Post error'});
                 return;
             }
                return res.json({
                      msg: 'We recieved your data!!!!'
                  });
-            
         });
     
     BlogPost
@@ -37,8 +39,8 @@ router.post('/api/save', (req, res)=> {
 });
 router.get('/name', (req,res)=>{
     const data = {
-        username:'trich55',
-        age: 25
+        username:'Jrich55',
+        age: 30
     };
     res.json(data);
 

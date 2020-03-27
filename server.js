@@ -13,23 +13,21 @@ const routes = require('./routes/api')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_petpose',{
     useNewUrlParser: true,
-    useUnifiedTopology: true, 
+    useUnifiedTopology: false, 
 });
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true})); //make data avaialable on req.body
 
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+ 
 // mongoose connection notification in console for verification of connect
 mongoose.connection.on('connected',() => {
     console.log('Mongoose is connected!!!!!');
 });
-
-app.use(express.json());
-app.use(express.urlencoded({extended: false})); //make data avaialable on req.body
-
-
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('/client/build'));
-}
- 
 // http logger that Logs every route request to the terminal thats hit
 app.use(morgan('tiny'));
 app.use('/api', routes);
