@@ -85,6 +85,7 @@ displayBlogPost = (posts) => {
     return (
       <div className="app-container">
         <h1>Welcome To Pet Pose</h1>
+        <h3>Instagram for Pets</h3>
         <form onSubmit ={this.submit}>
           <div className="form-input">
             <input
